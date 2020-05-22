@@ -1,24 +1,15 @@
 package example
 
+import com.swc.Monoid
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.funspec.AnyFunSpec
 
 // 2.3 Exercise: The Truth About Monoids
 
-trait Semigroup[A] {
-  def combine(a: A, b: A): A
-}
 
-trait Monoid[A] extends Semigroup[A] {
-  def empty: A
-}
 
-object Monoid {
-  def apply[A](implicit m: Monoid[A]) = m
-}
-
-class Spec extends AnyFunSpec with Matchers {
+class MonoidExerciseBooleanSpec extends AnyFunSpec with Matchers {
 
   implicit val boolOrMonoid: Monoid[Boolean] = new Monoid[Boolean] {
 
@@ -50,9 +41,9 @@ class Spec extends AnyFunSpec with Matchers {
   def testReferential(monoid: Monoid[Boolean]) = {
     monoid.combine(
       false,
-      boolOrMonoid.combine(true, false)
-    ) === boolOrMonoid.combine(
-      boolOrMonoid.combine(false, true),
+      monoid.combine(true, false)
+    ) === monoid.combine(
+      monoid.combine(false, true),
       false
     )
   }
@@ -67,31 +58,31 @@ class Spec extends AnyFunSpec with Matchers {
     )
   }
 
-  describe("MonoidExercises") {
+  describe("MonoidExerciseBoolean") {
     describe("boolOrMonoid") {
       it("should be referential") {
-        testReferential(boolOrMonoid)
+        assert(testReferential(boolOrMonoid))
       }
       it("should have an identity") {
-        testIdentity(boolOrMonoid)
+        assert(testIdentity(boolOrMonoid))
       }
     }
 
     describe("boolAndMonoid") {
       it("should be referential") {
-        testReferential(boolAndMonoid)
+        assert(testReferential(boolAndMonoid))
       }
       it("should have an identity") {
-        testIdentity(boolAndMonoid)
+        assert(testIdentity(boolAndMonoid))
       }
     }
 
     describe("boolXorMonoid") {
       it("should be referential") {
-        testReferential(boolXorMonoid)
+        assert(testReferential(boolXorMonoid))
       }
       it("should have an identity") {
-        testIdentity(boolXorMonoid)
+        assert(testIdentity(boolXorMonoid))
       }
     }
   }
