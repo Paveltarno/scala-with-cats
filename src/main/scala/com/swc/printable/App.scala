@@ -1,10 +1,17 @@
 package com.swc.printable
+import com.swc._
+
 import PrintableInstances._
 import PrintableSyntax._
 
-case class Cat(name: String, age: Int, color: String)
+import cats.instances.int._
+import cats.instances.string._
+import cats.instances.option._
 
-object Cat {
+import cats.Show
+import cats.syntax.show._
+
+object App {
 
   implicit val printableCat = new Printable[Cat] {
 
@@ -14,10 +21,12 @@ object Cat {
 
   }
 
-}
+  implicit val showableCat: Show[Cat] = Show.show((input) =>
+    s"${input.name.show} is a ${input.age.show} year old ${input.color.show} cat"
+  )
 
-class App {
   def run = {
+    println("-- without cats --")
     val cat1 = new Cat("Yeti", 1, "Black")
     val cat2 = new Cat("Bubu", 3, "Yellow")
     println("----Using Instances----")
@@ -26,5 +35,9 @@ class App {
     println("----Using Syntax----")
     cat1.print
     cat2.print
+
+    println("-- with cats --")
+    println(cat1.show)
+    println(cat2.show)
   }
 }

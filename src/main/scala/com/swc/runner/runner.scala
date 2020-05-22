@@ -1,8 +1,10 @@
 package com.swc.runner
-import com.swc.usingCats
-import com.swc.usingCats.showExamples
+// import com.swc.printable._
+// import com.swc.usingCats
+// import com.swc.usingCats.showExamples
 
 object runner extends App {
-  showExamples.methodInterface()
-  showExamples.syntaxInterface()
+  com.swc.usingCats.eqExamples.run
+  // com.swc.printable
+  // com.swc.printable.App.run
 }
