@@ -1,4 +1,4 @@
-package printable
+package com.swc.printable
 import PrintableInstances._
 import PrintableSyntax._
 
@@ -16,8 +16,8 @@ object Cat {
 
 }
 
-object App {
-  def run {
+class App {
+  def run = {
     val cat1 = new Cat("Yeti", 1, "Black")
     val cat2 = new Cat("Bubu", 3, "Yellow")
     println("----Using Instances----")

@@ -1,4 +1,5 @@
-package printable
+package com.swc.printable
+import scala.specialized
 // P18 1.3 Exercise: Printable Library
 
 // type class
@@ -19,7 +20,7 @@ object PrintableInstances {
 
 }
 
-// Interface
+// interfaces
 object Printable {
   def format[A](input: A)(implicit printable: Printable[A]) = {
     printable.format(input)
