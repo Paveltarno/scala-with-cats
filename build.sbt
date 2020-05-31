@@ -11,7 +11,7 @@ lazy val root = (project in file("."))
     libraryDependencies += scalaTest % Test,
     libraryDependencies += "org.typelevel" %% "cats-core" % "2.0.0",
 
-    scalacOptions ++= Seq("-Xfatal-warnings", "-deprecation")
+    scalacOptions ++= Seq("-deprecation")
   )
 
 

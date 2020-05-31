@@ -1,15 +1,13 @@
 package example
 
 import com.swc.Monoid
-import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
 import org.scalatest.funspec.AnyFunSpec
 
 // 2.3 Exercise: The Truth About Monoids
 
 
 
-class MonoidExerciseBooleanSpec extends AnyFunSpec with Matchers {
+class MonoidExerciseBooleanSpec extends AnyFunSpec {
 
   implicit val boolOrMonoid: Monoid[Boolean] = new Monoid[Boolean] {
 

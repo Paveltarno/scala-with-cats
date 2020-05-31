@@ -2,13 +2,11 @@ package example
 
 import com.swc.Monoid
 import com.swc.Semigroup
-import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
 import org.scalatest.funspec.AnyFunSpec
 
 // 2.4 Exercise: Exercise: All Set for Monoids
 
-class MonoidExerciseSetSpec extends AnyFunSpec with Matchers {
+class MonoidExerciseSetSpec extends AnyFunSpec {
 
   implicit def setUnionMonoid[A]: Monoid[Set[A]] = new Monoid[Set[A]] {
 
