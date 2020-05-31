@@ -1,17 +1,13 @@
 package com.swc
 
-import cats.Monoid
-import cats.instances.int._ // for Monoid 
-import cats.instances.option._ // for Monoid
-import scala.concurrent.Future
-import scala.concurrent.{Future, Await}
-import scala.concurrent.ExecutionContext.Implicits.global
+import cats.Functor
+import cats.instances.option._
+import cats.instances.int._
 
-object yet{
+object Foo {
 
-  val future: Future[String] = Future(123).
-map(n => n + 1). map(n => n * 2). map(n => s"${n}!")
-Await.result(future, 1.second)
+  val intToString: Int => String = _.toString()
 
+  val qq = Functor[Option].map(Some(1))(intToString) // Result is Option[String]
+  val qe = Functor[Option].lift(intToString)(Some(1)) // Result is Option[String]
 }
-
