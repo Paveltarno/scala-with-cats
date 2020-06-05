@@ -19,6 +19,16 @@ class Function1Functor extends AnyFunSpec {
 
   describe("Function1Functor (no cats)") {
 
+    it("'nothing'") {
+      trait Helloable[T[_]]{
+        def hello[A,B](in: T[A]): T[B]
+      }
+
+      val q = new Helloable[Option] {
+        override def hello[A, B](in: Option[A]): Option[B] = ???
+      }
+    }
+
     it("Maps Int => Double => String") {
       val a: Int => Double = (in) => in.toDouble
       val b: Double => String = (in) => in.toString()

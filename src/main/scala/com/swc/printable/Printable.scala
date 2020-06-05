@@ -4,7 +4,12 @@ import scala.specialized
 
 // type class
 trait Printable[A] {
+  self =>
   def format(input: A): String
+  def contramap[B](func: B => A): Printable[B] =
+    new Printable[B] {
+      def format(value: B): String = self.format(func(value))
+    }
 }
 
 // instances
@@ -22,6 +27,9 @@ object PrintableInstances {
 
 // interfaces
 object Printable {
+
+  def apply[A](implicit printable: Printable[A]) = printable
+
   def format[A](input: A)(implicit printable: Printable[A]) = {
     printable.format(input)
   }
