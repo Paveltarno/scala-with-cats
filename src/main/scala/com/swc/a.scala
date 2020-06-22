@@ -9,6 +9,10 @@ import cats.implicits._
 object Zoo {
 
   val in: Id[Int] = 1
-  val out = in.flatMap(_ + 1) 
+  val out = in.flatMap(_ + 1)
+
+  val q = "error".asLeft[Int]
+  val aa = q.toList
+  val ab = q.fold((_) => 2, (_) => 1)
 
 }

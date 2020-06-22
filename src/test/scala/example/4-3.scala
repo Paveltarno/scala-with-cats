@@ -12,11 +12,11 @@ class MonadicSecretIdentities extends AnyFunSpec {
     assert(pure(1) == 1)
   }
 
-  it("has a map method"){
+  it("has a map method") {
     assert(map(1)(_.toString()) == "1")
   }
 
-  it("has a flatmap method"){
+  it("has a flatmap method") {
     assert(flatMap(1)(_.toString()) == "1")
   }
 }
