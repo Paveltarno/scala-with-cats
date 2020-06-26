@@ -1,18 +1,15 @@
 package com.swc
 
-import cats.Functor
-import cats.Applicative
-import cats.Id
-import cats.Monad
-import cats.implicits._
+import cats.MonadError
+import cats.instances.either._
+import cats.Eval
 
 object Zoo {
-
-  val in: Id[Int] = 1
-  val out = in.flatMap(_ + 1)
-
-  val q = "error".asLeft[Int]
-  val aa = q.toList
-  val ab = q.fold((_) => 2, (_) => 1)
-
+  def factorial(n: BigInt): Eval[BigInt] =
+    if (n == 1) {
+      Eval.now(n)
+    } else {
+      factorial(n - 1).map(_ * n)
+    }
+    
 }
