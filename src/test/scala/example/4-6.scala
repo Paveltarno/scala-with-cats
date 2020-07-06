@@ -14,13 +14,14 @@ class SaferFoldingUsingEval extends AnyFunSpec {
 
   def foldRightEval[A, B](as: List[A], acc: Eval[B])(
       fn: (A, Eval[B]) => Eval[B]
-  ): Eval[B] =
+  ): Eval[B] = {
     as match {
       case head :: tail =>
         Eval.defer(fn(head, foldRight(tail, acc)(fn)))
       case Nil =>
         acc
     }
+  }
 
   it("the original foldRight it not stack safe") {
     assertThrows[StackOverflowError] {
@@ -32,7 +33,7 @@ class SaferFoldingUsingEval extends AnyFunSpec {
   }
 
   it("the new foldRight is stack safe") {
-    val l = (0 to 1000000).toList
+    val l = (0 to 10).toList
     val result = foldRightEval(l, Eval.now(0))((i, acc) => {
       Eval.now(acc.value + i)
     })
